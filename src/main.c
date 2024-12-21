@@ -12,8 +12,8 @@ int main(void)
 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bpp, &data.img.ll, &data.img.en);
 
 
-	vec1 = new_vec4(WIDTH/2, HEIGHT/2, 0,  0x00FF0000);
-	vec2 = new_vec4(WIDTH/2 + 40, HEIGHT/2 + 40, 0,  0x86a97b);
+	vec1 = new_vec4(0, 0, 0,  0x00FF0000);
+	vec2 = new_vec4(WIDTH, HEIGHT, 0,  0x86a97b);
 
 	// draw_vec(vec1, &data);
 	// draw_vec(vec2, &data);

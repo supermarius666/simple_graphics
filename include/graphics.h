@@ -58,6 +58,7 @@ t_vec4	*new_vec4(int x, int y, int z, int color);
 
 /* draw functions */
 void	draw_vec(t_vec4 *vec, t_data *data);
+void	draw_line(t_vec4 *start, t_vec4 *end, t_data *data);
 
 /* matrix functions */
 

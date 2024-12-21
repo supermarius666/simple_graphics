@@ -25,7 +25,6 @@ static int	is_on_screen(t_vec4 *vec)
 	return (vec->x >= 0 && vec->x < WIDTH && vec->y >= 0 && vec->y < HEIGHT);
 }
 
-
 void	draw_vec(t_vec4 *vec, t_data *data)
 {
 	char	*addr;
@@ -34,6 +33,36 @@ void	draw_vec(t_vec4 *vec, t_data *data)
 	{
 		addr = data->img.addr + (vec->y * data->img.ll + vec->x * (data->img.bpp / 8));
 		*(unsigned int *)addr = vec->color;
+	}
+}
+
+void	draw_line(t_vec4 *start, t_vec4 *end, t_data *data)
+{
+	int			er[2];
+	t_vec4		curr;
+
+	curr.x = start->x;
+	curr.y = start->y;
+	curr.z = 0;
+	curr.color = 0x86a97b;
+	er[0] = abs(end->x - start->x) - abs(end->y - start->y);
+	while (curr.x != end->x || curr.y != end->y)
+	{
+		if (is_on_screen(&curr))
+			draw_vec(&curr, data);
+		er[1] = 2 * er[0];
+		if (er[1] > -abs(end->y - start->y))
+		{
+			er[0] -= abs(end->y - start->y);
+			curr.x += (start->x < end->x);
+			curr.x -= (end->x < start->x);
+		}
+		if (er[1] < abs(end->x - start->x))
+		{
+			er[0] += abs(end->x - start->x);
+			curr.y += (start->y < end->y);
+			curr.y -= (end->y < start->y);
+		}
 	}
 }
 

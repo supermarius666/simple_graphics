@@ -26,7 +26,8 @@ OBJ = $(SRC:.c=.o)
 NAME = graphics
 
 # Regola di default
-all: $(LIB_MLX) $(NAME) 
+# $(LIB_MLX)
+all:  $(NAME) 
 
 # Regola per creare l'eseguibile
 $(NAME): $(OBJ)
@@ -36,18 +37,18 @@ $(NAME): $(OBJ)
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include $(INCLUDE_DIRS) -O3 -c $< -o $@
 
-$(LIB_MLX):
-	$(MAKE) -C $(LIB_DIR)
+# $(LIB_MLX):
+# 	$(MAKE) -C $(LIB_DIR)
 
 # Regola per pulire i file generati
 clean:
 	rm -f $(OBJ)
-	$(MAKE) -C $(LIB_DIR) clean
+#	$(MAKE) -C $(LIB_DIR) clean
 
 # Regola per pulire tutto
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIB_DIR) clean
+#	$(MAKE) -C $(LIB_DIR) clean
 # Regola per ricostruire tutto
 re: fclean all
 

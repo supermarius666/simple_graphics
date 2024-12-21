@@ -44,12 +44,28 @@ typedef struct s_img
 	int		en;
 }	t_img;
 
+/* map struct */
+typedef	struct s_map
+{
+	int		width;
+	int		height;
+	t_vec4	**map;
+}	t_map;
+
+/* camera struct */
+typedef struct s_camera
+{
+	int	zoom;
+}	t_camera;
+
 /* data stuct */
 typedef struct s_data
 {
-	t_img	img;
-	void	*win;
-	void	*mlx;
+	t_img		img;
+	t_map		map;
+	t_camera	cam;
+	void		*win;
+	void		*mlx;
 }	t_data;
 
 
@@ -59,9 +75,12 @@ t_vec4	*new_vec4(int x, int y, int z, int color);
 /* draw functions */
 void	draw_vec(t_vec4 *vec, t_data *data);
 void	draw_line(t_vec4 *start, t_vec4 *end, t_data *data);
+void	clear_image(t_data *data, int color);
+void 	draw_square(t_vec4 *center, int size, t_data *data);
 
 /* matrix functions */
-
+void	apply_transformation(t_vec4 *point, float matrix[4][4]);
+void 	create_scaling_matrix(float matrix[4][4], int sx, int sy, int sz);
 
 /* keys */
 int	basic_keys(int keycode, t_data *data);
